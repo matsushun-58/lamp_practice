@@ -19,7 +19,7 @@
       method="post" 
       action="admin_insert_item.php" 
       enctype="multipart/form-data"
-      class="add_item_form col-md-6">
+      class="add_item_form col-md-6"> <!-- admin.cssに記載　col-md-6:col-画面幅-グリッド数 -->
       <div class="form-group">
         <label for="name">名前: </label>
         <input class="form-control" type="text" name="name" id="name">

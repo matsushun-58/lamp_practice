@@ -16,18 +16,19 @@ function get_db_connect(){
   return $dbh;
 }
 
-function fetch_query($db, $sql, $params = array()){
+function fetch_query($db, $sql, $params = array()){ //1行ずつ配列して返す
   try{
+    //sql実行の準備
     $statement = $db->prepare($sql);
     $statement->execute($params);
     return $statement->fetch();
   }catch(PDOException $e){
-    set_error('データ取得に失敗しました。');
+    set_error('データ取得に失敗しました。'); //エラーメッセージ表示
   }
   return false;
 }
 
-function fetch_all_query($db, $sql, $params = array()){
+function fetch_all_query($db, $sql, $params = array()){ //該当する全てのデータを配列して返す
   try{
     $statement = $db->prepare($sql);
     $statement->execute($params);
