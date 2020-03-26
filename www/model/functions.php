@@ -135,6 +135,6 @@ function is_valid_upload_image($image){
   return true;
 }
 
-function h($escape) {
-  return htmlspecialchars($escape, ENT_QUOTES, 'UTF-8');
+function h($unescaped_str) {
+  return htmlspecialchars($unescaped_str, ENT_QUOTES, 'UTF-8');
 }
