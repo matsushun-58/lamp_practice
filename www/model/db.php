@@ -20,7 +20,8 @@ function get_db_connect(){
   return $dbh;
 }
 
-function fetch_query($db, $sql, $params = array()){ //1行ずつ配列して返す
+// $params:指定がない場合、デフォルトで空欄
+function fetch_query($db, $sql, $params = array()){
   try{
     //sql実行の準備
     $statement = $db->prepare($sql);
