@@ -90,6 +90,7 @@ function update_cart_amount($db, $cart_id, $amount){ //引数あり関数の定�
       cart_id = {$cart_id}
     LIMIT 1
   ";
+  
   return execute_query($db, $sql); //戻り値の作成
 }
 
@@ -99,8 +100,9 @@ function delete_cart($db, $cart_id){ //引数あり関数の定義(カートの�
       carts
     WHERE
       cart_id = {$cart_id}
-    LIMIT 1 //問合せ結果の行数を制限する
+    LIMIT 1
   ";
+// LIMIT:問合せ結果の行数を制限する
 
   return execute_query($db, $sql); //戻り値の作成
 }
