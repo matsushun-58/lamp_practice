@@ -91,7 +91,7 @@ function insert_item($db, $name, $price, $stock, $filename, $status){
   // バインドする配列をあらかじめ用意
   $params = array(
     ':name' => $name,
-    ':price' => $name,
+    ':price' => $price,
     ':stock' => $stock,
     ':filename' => $filename,
     ':status_value' => $status_value
@@ -132,7 +132,7 @@ function update_item_stock($db, $item_id, $stock){
   // バインドする配列をあらかじめ用意
   $params = array(
     ':stock' => $stock,
-    ':item/id' => $item_id
+    ':item_id' => $item_id
   );
   
   return execute_query($db, $sql, $params);
