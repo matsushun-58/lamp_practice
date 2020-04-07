@@ -38,7 +38,7 @@ function get_session($name){ //セッション獲得の取得
   return '';
 }
 
-function set_session($name, $value){ //
+function set_session($name, $value){
   $_SESSION[$name] = $value;
 }
 
@@ -139,7 +139,7 @@ function h($unescaped_str) {
   return htmlspecialchars($unescaped_str, ENT_QUOTES, 'UTF-8');
 }
 
-// トークンの生成
+// トークンの生成（破棄・再生成）
 function get_csrf_token(){
   // get_random_string()はユーザー定義関数。
   $token = get_random_string(30);
@@ -150,7 +150,7 @@ function get_csrf_token(){
 
 // トークンのチェック
 function is_valid_csrf_token($token){
-  if($token === '') {
+  if($token === ''){
     return false;
   }
   // get_session()はユーザー定義関数

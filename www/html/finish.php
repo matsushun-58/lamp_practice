@@ -12,6 +12,12 @@ if(is_logined() === false){ //ログイン失敗した場合リダイレクト
   redirect_to(LOGIN_URL);
 }
 
+// formから飛んできたトークンの照合を行う
+if (is_valid_csrf_token($_POST['csrf_token']) === false){
+  set_error('不正なアクセスです。'); //エラーメッセージ表示
+  redirect_to(HOME_URL);
+}
+
 $db = get_db_connect(); //データベース接続
 $user = get_login_user($db); //ユーザーログイン
 
@@ -23,5 +29,8 @@ if(purchase_carts($db, $carts) === false){ //カートの購入に失敗した�
 } 
 
 $total_price = sum_carts($carts); //カートの合計金額表示
+
+// finish_view.phpを読み込む直前にトークンの生成を行う
+// $csrf_token = get_csrf_token();
 
 include_once '../view/finish_view.php'; //結果ページ表示

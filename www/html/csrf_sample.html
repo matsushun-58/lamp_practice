@@ -25,7 +25,7 @@
     setTimeout(function(){ //setTimeout:指定した時間後に実行する
        $('#csrf').contents().find('form').each(function(){ //繰り返し実行する処理
          $(this).submit();
-       });
+       })
       
     //   alert('カートに商品を登録しました。'); webサイト側からメッセージ表示
     // }, 3000); //ミリ秒=3秒
@@ -36,6 +36,7 @@
     // setTimeout(function(){ 無名関数:一回しか使わないけど関数が必要な場合
     //   alert('xyz');
     // }, 5000);
+    }
   </script>
 </body>
 </html>
