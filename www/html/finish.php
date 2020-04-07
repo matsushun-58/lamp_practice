@@ -30,7 +30,4 @@ if(purchase_carts($db, $carts) === false){ //カートの購入に失敗した�
 
 $total_price = sum_carts($carts); //カートの合計金額表示
 
-// finish_view.phpを読み込む直前にトークンの生成を行う
-$csrf_token = get_csrf_token();
-
 include_once '../view/finish_view.php'; //結果ページ表示
