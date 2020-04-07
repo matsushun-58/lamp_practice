@@ -8,6 +8,9 @@ if(is_logined() === true){ //ログイン成功した場合
   redirect_to(HOME_URL); //ホームページへリダイレクト
 }
 
+// トークンの生成を行う
+$csrf_token = get_csrf_token();
+
 include_once VIEW_PATH . 'signup_view.php'; //signup.php読み込み
 
 

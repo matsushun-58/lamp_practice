@@ -9,6 +9,12 @@ if(is_logined() === true){ //ログインに失敗した場合、リダイレク
   redirect_to(HOME_URL);
 }
 
+// formから飛んできたトークンの照合を行う
+if (is_valid_csrf_token($_POST['csrf_token']) === false){
+  set_error('不正なアクセスです。'); //エラーメッセージ表示
+  redirect_to(HOME_URL);
+}
+
 $name = get_post('name'); //ログインネームポスト
 $password = get_post('password'); //パスワードポスト
 

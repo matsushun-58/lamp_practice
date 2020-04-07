@@ -10,6 +10,12 @@ if(is_logined() === false){ //ログインに失敗した場合、ログイン�
   redirect_to(LOGIN_URL);
 }
 
+// formから飛んできたトークンの照合を行う
+if (is_valid_csrf_token($_POST['csrf_token']) === false){
+  set_error('不正なアクセスです。'); //エラーメッセージ表示
+  redirect_to(HOME_URL);
+}
+
 $db = get_db_connect(); //データベースに接続
 
 $user = get_login_user($db); //データベースにユーザーログイン
