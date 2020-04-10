@@ -10,14 +10,14 @@ function redirect_to($url){ //リダイレクト処理
   exit;
 }
 
-function get_get($name){ //
+function get_get($name){
   if(isset($_GET[$name]) === true){
     return $_GET[$name];
   };
   return '';
 }
 
-function get_post($name){ //名前をポスト
+function get_post($name){ //$nameというネームでpostされた文字列が存在しているか確認
   if(isset($_POST[$name]) === true){
     return $_POST[$name];
   };

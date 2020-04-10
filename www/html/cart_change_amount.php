@@ -12,8 +12,10 @@ if(is_logined() === false){ //ログイン失敗した場合、リダイレク�
   redirect_to(LOGIN_URL);
 }
 
+$csrf_token = get_post('csrf_token');
+
 // formから飛んできたトークンの照合を行う
-if (is_valid_csrf_token($_POST['csrf_token']) === false){
+if (is_valid_csrf_token($csrf_token) === false){
   set_error('不正なアクセスです。'); //エラーメッセージ表示
   redirect_to(HOME_URL);
 }
@@ -21,7 +23,7 @@ if (is_valid_csrf_token($_POST['csrf_token']) === false){
 $db = get_db_connect(); //データベース接続
 $user = get_login_user($db); //ユーザーログイン設定
 
-$cart_id = get_post('cart_id'); //カートid取得
+$cart_id = get_post('cart_id'); //ユーザー定義関数
 $amount = get_post('amount'); //数量取得
 
 if(update_cart_amount($db, $cart_id, $amount)){ //カートの数量がアップデートされた場合

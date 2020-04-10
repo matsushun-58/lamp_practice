@@ -11,9 +11,11 @@ if(is_logined() === false){
   redirect_to(LOGIN_URL);
 }
 
+$csrf_token = get_post('csrf_token');
+
 // formから飛んできたトークンの照合を行う
-if (is_valid_csrf_token($_POST['csrf_token']) === false){
-  set_error('不正なアクセスです。'); //エラーメッセージ表示
+if(is_valid_csrf_token($csrf_token) === false){
+  set_error('不正なアクセスです。');
   redirect_to(HOME_URL);
 }
 
