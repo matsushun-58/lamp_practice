@@ -31,7 +31,6 @@ CREATE TABLE `order_details` (
 --   `item_id` int(11) NOT NULL,
 --   `item_price` int(11) NOT NULL
 -- )
-
 -- 第3正規化は今回は必要なし
 
 -- 
