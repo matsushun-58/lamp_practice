@@ -12,4 +12,7 @@ if(is_logined() === true){ //ログインが成功した場合
 // トークンの生成を行う
 $csrf_token = get_csrf_token();
 
+//iframeでの読み込みを禁止する
+header('X-FRAME-OPTIONS: DENY');
+
 include_once VIEW_PATH . 'login_view.php'; //login_view.php読み込み

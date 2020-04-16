@@ -11,6 +11,9 @@ if(is_logined() === true){ //ログイン成功した場合
 // トークンの生成を行う
 $csrf_token = get_csrf_token();
 
+//iframeでの読み込みを禁止する
+header('X-FRAME-OPTIONS: DENY');
+
 include_once VIEW_PATH . 'signup_view.php'; //signup.php読み込み
 
 
