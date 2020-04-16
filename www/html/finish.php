@@ -12,6 +12,18 @@ if(is_logined() === false){ //ログイン失敗した場合リダイレクト
   redirect_to(LOGIN_URL);
 }
 
+$csrf_token = get_post('csrf_token');
+
+//iframeでの読み込みを禁止する
+header('X-FRAME-OPTIONS: DENY');
+
+// formから飛んできたトークンの照合を行う
+if (is_valid_csrf_token($csrf_token) === false){
+  set_error('不正なアクセスです。'); //エラーメッセージ表示
+  redirect_to(HOME_URL);
+}
+get_csrf_token(); //トークンの書き換えを行う
+
 $db = get_db_connect(); //データベース接続
 $user = get_login_user($db); //ユーザーログイン
 
