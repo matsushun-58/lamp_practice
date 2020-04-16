@@ -18,5 +18,6 @@ $user = get_login_user($db); //ユーザーログイン設定
 $carts = get_user_carts($db, $user['user_id']); //カートの中身取得
 
 $total_price = sum_carts($carts); //カートの合計金額表示
-
+// view.phpを読み込む直前にトークンの生成を行う※再生成も行う
+$csrf_token = get_csrf_token();
 include_once VIEW_PATH . 'cart_view.php'; //エラーの場合、警告文を出すが処理を続行(何も表示されなくなる為)

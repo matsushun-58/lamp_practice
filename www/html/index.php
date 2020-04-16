@@ -15,4 +15,10 @@ $user = get_login_user($db); //ユーザーログイン
 
 $items = get_open_items($db); //データベースのアイテム情報取得
 
+// トークンの生成を行う
+$csrf_token = get_csrf_token();
+
+//iframeでの読み込みを禁止する
+header('X-FRAME-OPTIONS: DENY');
+
 include_once VIEW_PATH . 'index_view.php'; //html読み込み

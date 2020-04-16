@@ -10,14 +10,14 @@ function redirect_to($url){ //リダイレクト処理
   exit;
 }
 
-function get_get($name){ //
+function get_get($name){
   if(isset($_GET[$name]) === true){
     return $_GET[$name];
   };
   return '';
 }
 
-function get_post($name){ //名前をポスト
+function get_post($name){ //$nameというネームでpostされた文字列が存在しているか確認
   if(isset($_POST[$name]) === true){
     return $_POST[$name];
   };
@@ -38,7 +38,7 @@ function get_session($name){ //セッション獲得の取得
   return '';
 }
 
-function set_session($name, $value){ //
+function set_session($name, $value){
   $_SESSION[$name] = $value;
 }
 
@@ -137,4 +137,22 @@ function is_valid_upload_image($image){
 
 function h($unescaped_str) {
   return htmlspecialchars($unescaped_str, ENT_QUOTES, 'UTF-8');
+}
+
+// トークンの生成（破棄・再生成）
+function get_csrf_token(){
+  // get_random_string()はユーザー定義関数。
+  $token = get_random_string(30);
+  // set_session()はユーザー定義関数。
+  set_session('csrf_token', $token);
+  return $token;
+}
+
+// トークンのチェック
+function is_valid_csrf_token($token){
+  if($token === ''){
+    return false;
+  }
+  // get_session()はユーザー定義関数
+  return $token === get_session('csrf_token');
 }

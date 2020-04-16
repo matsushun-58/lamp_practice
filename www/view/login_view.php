@@ -13,6 +13,8 @@
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
     <form method="post" action="login_process.php" class="login_form mx-auto">
+      <!-- トークンの埋め込み作業を行う -->
+      <input type="hidden" name="csrf_token" value="<?php print (h($csrf_token)) ?>">
       <div class="form-group">
         <label for="name">名前: </label>
         <input type="text" name="name" id="name" class="form-control">
