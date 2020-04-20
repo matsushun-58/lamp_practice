@@ -25,7 +25,7 @@ $db = get_db_connect(); //データベース接続
 
 try{
   $result = regist_user($db, $name, $password, $password_confirmation); //管理ユーザー照合
-  if( $result === false){ //処理に失敗した場合
+  if($result === false){ //処理に失敗した場合
     set_error('ユーザー登録に失敗しました。'); //エラーメッセージ表示
     redirect_to(SIGNUP_URL);
   }

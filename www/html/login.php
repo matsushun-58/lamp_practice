@@ -5,11 +5,11 @@ require_once MODEL_PATH . 'functions.php'; //関数ファイル読み込み
 
 session_start(); //セッション開始
 
+// トークンの生成を行う
+$csrf_token = get_csrf_token();
+
 if(is_logined() === true){ //ログインが成功した場合
   redirect_to(HOME_URL); //ホームページへ移動
 }
-
-// トークンの生成を行う
-$csrf_token = get_csrf_token();
 
 include_once VIEW_PATH . 'login_view.php'; //login_view.php読み込み
