@@ -24,3 +24,4 @@ function insert_order_detail($db, $order_id, $item_id, $order_price, $item_amoun
     
     return execute_query($db, $sql, $params);
 }
+

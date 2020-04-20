@@ -1,4 +1,6 @@
 <?php 
+require_once MODEL_PATH . 'order.php';
+require_once MODEL_PATH . 'order_detail.php';
 require_once MODEL_PATH . 'functions.php'; //関数ページ読み込み
 require_once MODEL_PATH . 'db.php';
 
@@ -131,6 +133,7 @@ function purchase_carts($db, $carts){ //カート購入の定義
   if(validate_cart_purchase($carts) === false){ //カートの中身の検証に失敗した場合
     return false; //戻り値でfalse指定
   }
+  $db->beginTransaction();
   foreach($carts as $cart){ //$cartsの中身を$cart内に配列表示
     if(update_item_stock(
         $db, 
@@ -138,10 +141,30 @@ function purchase_carts($db, $carts){ //カート購入の定義
         $cart['stock'] - $cart['amount']
       ) === false){ //カートの中身のアップデートに失敗した場合
       set_error($cart['name'] . 'の購入に失敗しました。'); //エラーメッセージ表示
+      $db->rollback();
+      return false;
     }
   }
-  
-  delete_user_carts($db, $carts[0]['user_id']); //カートidの中身を削除
+  if(insert_order($db, $carts[0]['user_id']) === false){
+    set_error('購入履歴の登録に失敗しました。');
+    $db->rollback();
+    return false;
+  }
+  $order_id = $db->lastInsertId(); //insertされたデータのidを取得
+  foreach($carts as $cart){
+    if(insert_order_detail($db, $order_id, $cart['item_id'], $cart['price'], $cart['amount']) === false){
+      set_error('購入明細の登録に失敗しました。');
+      $db->rollback();
+      return false;
+    }
+  }
+  if(delete_user_carts($db, $carts[0]['user_id']) === false){
+    set_error('カートの中身の削除に失敗しました。');
+    $db->rollback();
+    return false;
+  } //カートidの中身を削除
+  $db->commit();
+  return true;
 }
 
 function delete_user_carts($db, $user_id){ //カートの中身を削除

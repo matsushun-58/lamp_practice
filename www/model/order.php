@@ -4,18 +4,16 @@ require_once MODEL_PATH . 'db.php';
 
 // DB利用
 
-function insert_order_detail($db, $user_id, $created){
+function insert_order($db, $user_id){
     $sql ="
     INSERT INTO
         orders(
-            user_id,
-            created
+            user_id
         )
-    VALUES(:user_id, :created)
+    VALUES(:user_id)
     ";
     $params = array(
-        ':user_id' => $user_id,
-        ':created' => $created
+        ':user_id' => $user_id
       );
     
     return execute_query($db, $sql, $params);

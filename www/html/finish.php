@@ -29,7 +29,7 @@ $carts = get_user_carts($db, $user['user_id']); //カートの中身習得
 if(purchase_carts($db, $carts) === false){ //カートの購入に失敗した場合
   set_error('商品が購入できませんでした。'); //エラーメッセージ表示
   redirect_to(CART_URL); //カートページへ移行
-} 
+}
 
 $total_price = sum_carts($carts); //カートの合計金額表示
 
