@@ -33,7 +33,7 @@ function get_user_by_name($db, $name){
     FROM
       users
     WHERE
-      name = ':name'
+      name = :name
     LIMIT 1
   ";
   // バインドする配列をあらかじめ用意
@@ -112,7 +112,7 @@ function insert_user($db, $name, $password){
   $sql = "
     INSERT INTO
       users(name, password)
-    VALUES (':name', ':password');
+    VALUES (:name, :password)
   ";
   // バインドする配列をあらかじめ用意
   $params = array(

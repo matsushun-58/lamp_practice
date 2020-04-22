@@ -15,6 +15,5 @@ function insert_order($db, $user_id){
     $params = array(
         ':user_id' => $user_id
       );
-    
     return execute_query($db, $sql, $params);
 }

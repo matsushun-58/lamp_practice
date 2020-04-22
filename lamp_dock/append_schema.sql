@@ -8,22 +8,41 @@
 
 -- 第1正規化
 
-CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL AUTO_INCREMENT,
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE `orders` (
+--   `order_id` int(11) NOT NULL AUTO_INCREMENT,
+--   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   `user_id` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `order_details` (
-  `order_detail_id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `order_price` int(11) NOT NULL,
-  `item_amount` int(11) NOT NULL,
-  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `sample`.`orders` (
+  `order_id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `updated` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `user_id` INT(11) NOT NULL , 
+  PRIMARY KEY (`order_id`)
+) ENGINE = InnoDB;
+
+-- CREATE TABLE `order_details` (
+--   `order_detail_id` int(11) NOT NULL AUTO_INCREMENT,
+--   `order_id` int(11) NOT NULL,
+--   `item_id` int(11) NOT NULL,
+--   `order_price` int(11) NOT NULL,
+--   `item_amount` int(11) NOT NULL,
+--   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `sample`.`order_details` (
+  `order_detail_id` INT NOT NULL AUTO_INCREMENT ,
+  `order_id` INT NOT NULL ,
+  `item_id` INT NOT NULL ,
+  `order_price` INT NOT NULL ,
+  `item_amount` INT NOT NULL ,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `updated` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`order_detail_id`)
+) ENGINE = InnoDB;
 
 -- 第2正規化(itemsとして既に存在する)
 
