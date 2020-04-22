@@ -24,7 +24,7 @@ $db = get_db_connect(); //データベース接続
 
 
 $user = login_as($db, $name, $password); //ログインに必要な情報
-if( $user === false){ //ユーザー認証に失敗した場合
+if($user === false){ //ユーザー認証に失敗した場合
   set_error('ログインに失敗しました。'); //エラーメッセージ
   redirect_to(LOGIN_URL); //ログインページへリダイレクト
 }

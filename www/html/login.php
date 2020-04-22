@@ -5,6 +5,9 @@ require_once MODEL_PATH . 'functions.php'; //関数ファイル読み込み
 
 session_start(); //セッション開始
 
+// トークンの生成を行う
+$csrf_token = get_csrf_token();
+
 if(is_logined() === true){ //ログインが成功した場合
   redirect_to(HOME_URL); //ホームページへ移動
 }

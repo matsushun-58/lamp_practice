@@ -86,7 +86,7 @@ function insert_item($db, $name, $price, $stock, $filename, $status){
         image,
         status
       )
-    VALUES(':name', :price, :stock, ':filename', :status_value);
+    VALUES(:name, :price, :stock, :filename, :status_value)
   ";
   // バインドする配列をあらかじめ用意
   $params = array(
