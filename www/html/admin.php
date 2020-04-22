@@ -20,5 +20,9 @@ if(is_admin($user) === false){ //ユーザー名が異なっていた場合
 }
 // admin_view.php読み込む前のトークン生成を行う
 $csrf_token = get_csrf_token();
+
+//iframeでの読み込みを禁止する
+header('X-FRAME-OPTIONS: DENY');
+
 $items = get_all_items($db); //全てのアイテムを確認
 include_once VIEW_PATH . '/admin_view.php'; //エラーの場合、警告文を出すが処理を続行(何も表示されなくなる為)
