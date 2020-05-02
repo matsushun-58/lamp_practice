@@ -25,6 +25,7 @@ define('HOME_URL', '/index.php'); //index.phpへ移動
 define('CART_URL', '/cart.php'); //カート情報へ移動
 define('FINISH_URL', '/finish.php'); //finish.phpへ移動
 define('ADMIN_URL', '/admin.php'); //管理ページへ移動
+define('ORDER_URL', '/order.php'); //購入履歴ページへ移動
 
 define('REGEXP_ALPHANUMERIC', '/\A[0-9a-zA-Z]+\z/'); //正規表現：検索パターンを記載/半角英数字
 define('REGEXP_POSITIVE_INTEGER', '/\A([1-9][0-9]*|0)\z/'); //最初の数字は1-9or0
