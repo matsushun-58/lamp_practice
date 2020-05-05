@@ -13,7 +13,9 @@ if(is_logined() === false){ //ログインに失敗した場合
 $db = get_db_connect(); //データベースへ接続
 $user = get_login_user($db); //ユーザーログイン
 
-$items = get_open_items($db); //データベースのアイテム情報取得
+$lineup = get_get('lineup');
+
+$items = get_open_items($db, $lineup); //データベースのアイテム情報取得
 
 // トークンの生成を行う
 $csrf_token = get_csrf_token();

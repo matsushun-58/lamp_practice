@@ -11,7 +11,19 @@
   
 
   <div class="container">
-    <h1>商品一覧</h1>
+    <div style="flex: 1;">
+      <h1>商品一覧</h1>
+      <form method="get" action="index.php">
+        <div style="text-align: right;">
+          <select name="lineup">
+            <option value='新着順'<?php if($lineup === '新着順'){h(print 'selected');} ?>>新着順</option>
+            <option value='価格の安い順'<?php if($lineup === '価格の安い順'){h(print 'selected');} ?>>価格の安い順</option>
+            <option value='価格の高い順'<?php if($lineup === '価格の高い順'){h(print 'selected');} ?>>価格の高い順</option>
+          </select>
+          <input type="submit" value='並び替え'>
+        </div>
+      </form>
+      </div>
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
 
     <div class="card-deck">
