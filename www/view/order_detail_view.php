@@ -50,7 +50,7 @@
     </table>
   </div>
   <form action="order_detail.php" method="get">
-      <input type="hidden" name="user_id" value="<?php print(h ($order['user_id']) ) ?>">
-    </form>
+    <input type="hidden" name="user_id" value="<?php print(h ($order['user_id']) ) ?>">
+  </form>
 </body>
 </html>

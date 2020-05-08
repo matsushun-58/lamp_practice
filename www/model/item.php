@@ -26,21 +26,43 @@ function get_item($db, $item_id){
   return fetch_query($db, $sql, $params);
 }
 
-function get_items($db, $is_open = false){
+function get_items($db, $is_open = false, $lineup = '新着順'){
   $sql = '
     SELECT
-      item_id, 
+      item_id,
       name,
       stock,
       price,
       image,
-      status
+      status,
+      created
     FROM
       items
   ';
   if($is_open === true){
     $sql .= '
       WHERE status = 1
+    ';
+  }
+  if($lineup === '新着順'){
+    $sql .= '
+      ORDER BY
+        created DESC
+    ';
+  }else if($lineup === '価格の安い順'){
+    $sql .= '
+      ORDER BY
+        price ASC
+    ';
+  }else if($lineup === '価格の高い順'){
+    $sql .= '
+      ORDER BY
+        price DESC
+    ';
+  }else{
+    $sql .= '
+      ORDER BY
+        created DESC
     ';
   }
 
@@ -51,8 +73,8 @@ function get_all_items($db){
   return get_items($db);
 }
 
-function get_open_items($db){
-  return get_items($db, true);
+function get_open_items($db, $lineup){
+  return get_items($db, true, $lineup);
 }
 
 function regist_item($db, $name, $price, $stock, $status, $image){
@@ -232,3 +254,9 @@ function is_valid_item_status($status){
   }
   return $is_valid;
 }
+
+// 新着順に並べる関数作成(created)
+
+// 価格の高い順に並べる関数作成(ASC使用)
+
+// 価格の安い順に並べる関数作成(DESC使用)
